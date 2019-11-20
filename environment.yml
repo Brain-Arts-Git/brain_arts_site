@@ -1,0 +1,9 @@
+name: brain-arts
+channels:
+  - anaconda
+  - defaults
+dependencies:
+  - python=3
+  - flask
+  - mysql
+  - pymysql
