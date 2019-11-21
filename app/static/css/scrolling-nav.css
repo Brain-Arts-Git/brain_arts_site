@@ -5,10 +5,20 @@
  */
 header {
   padding: 140px 0 80px;
+  font-family: futura;
 }
 
 section {
-  padding: 20px 0 80px;
+  padding: 40px 0 40px;
+  font-family: futura;
+}
+
+footer {
+  font-family: futura;
+}
+
+nav {
+  font-family: futura;
 }
 
 .section-about {
@@ -18,6 +28,11 @@ section {
 .section-contact {
   padding: 100px 0 100px;
   background-color: grey;
+}
+
+.img-logo {
+   width: 250px;
+   padding-bottom: 5px;
 }
 
 .img-center {
@@ -37,3 +52,9 @@ section {
   width: 15%;
   height: 40%;
 }
+
+@font-face {
+  font-family: futura;
+  src: url('static/fonts/Futura-Medium.woff');
+}
+

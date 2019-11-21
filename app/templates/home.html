@@ -1,11 +1,13 @@
 {% extends "index.html" %}
 
 {% block showslist %}
-	{% if not shows %}
-	<p class="lead">Sorry, no upcoming shows :(</p>
-	{% else %}
-		{% for show in shows %}
-		<p class="lead">{{ show.artist }} is playing on {{ show.date }} at {{ show.location }}</p>
-		{% endfor %}
-	{% endif %}
+    {% if not shows %}
+    <p class="lead">Sorry, no upcoming shows :(</p>
+    {% else %}
+        <hr>
+        {% for show in shows %}
+        <p class="lead">{{ show.artist }} is playing on {{ show.date }} at {{ show.location }}</p>
+        <hr>
+        {% endfor %}
+    {% endif %}
 {% endblock %}
