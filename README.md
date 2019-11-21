@@ -9,6 +9,7 @@ Brain Arts Organization is a volunteer run 501(c)3 arts nonprofit for Greater Bo
 - TODO
 
 ## Dependencies
+- Python 3
 - Flask
 - MySQL
 - Pymysql
