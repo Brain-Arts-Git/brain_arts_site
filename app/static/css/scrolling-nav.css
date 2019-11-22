@@ -30,6 +30,10 @@ nav {
   background-color: grey;
 }
 
+.blog-header {
+  height: 0px;
+}
+
 .img-logo {
    width: 250px;
    padding-bottom: 5px;
