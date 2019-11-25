@@ -9,7 +9,7 @@ Brain Arts Organization is a volunteer run 501(c)3 arts nonprofit for Greater Bo
 - Then `conda activate brain-arts`
 
 ## Usage
-- To start a local test server run `env FLASK_APP=brainartswebsite.py flask run` from the project directory
+- To start a local test server run `flask run` from the project directory
 
 ## Dependencies
 - Python 3
