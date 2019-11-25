@@ -59,6 +59,6 @@ nav {
 
 @font-face {
   font-family: futura;
-  src: url('static/fonts/Futura-Medium.woff');
+  src: url('/static/fonts/Futura-Medium.woff');
 }
 
