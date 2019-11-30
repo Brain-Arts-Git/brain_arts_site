@@ -49,6 +49,13 @@ nav {
   width: 75%;
 }
 
+.img-blog {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
 .icon-div {
   text-align: center;
   padding: 20px;
