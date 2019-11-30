@@ -4,8 +4,11 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-scrolling-nav/blob/master/LICENSE)
  */
 header {
-  padding: 140px 0 80px;
+  padding: 200px 0 0px 0;
   font-family: futura;
+  background-image: url('/static/img/headerimg.jpeg');
+  background-position: center; 
+  background-size: 1400px 230px;
 }
 
 section {
@@ -22,7 +25,7 @@ nav {
 }
 
 .section-about {
-  padding: 100px 0 100px;
+  padding: 50px 0 50px;
 }
 
 .section-contact {
