@@ -63,8 +63,8 @@ nav {
 
 .icon-link {
   padding: 0 20px 0 20px;
-  width: 15%;
-  height: 40%;
+  width: 100px;
+  height: 60px;
 }
 
 @font-face {
