@@ -47,6 +47,7 @@ Brain Arts Organization is a volunteer run 501(c)3 arts nonprofit for Greater Bo
 - https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-18-04-quickstart
 - https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands
 - https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-1804
+- https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps
 
 ## Contact
 **Alex Keklak** - [akeklak](https://github.com/akeklak)  
