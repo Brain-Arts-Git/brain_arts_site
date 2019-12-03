@@ -50,7 +50,7 @@ Brain Arts Organization is a volunteer run 501(c)3 arts nonprofit for Greater Bo
 - https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps
 
 ## Contact
-**Alex Keklak** - [akeklak](https://github.com/akeklak)  
+**Alex Keklak** - [akeklak](https://github.com/akeklak) - alexk@brain-arts.org
 **Jonathan Rodiger** - [jrodiger](https://github.com/jrodiger) - jon@brain-arts.org
 
 ## License
