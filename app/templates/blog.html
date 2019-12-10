@@ -1,30 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>Brain Arts Org</title>
-
-  <!-- Bootstrap core CSS -->
-  <link href="static/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="static/css/styles.css?v=1.0" rel="stylesheet">
-
-  <!-- Browser Icon -->
-  <link rel="icon" href="static/img/mascot.png">
-
-</head>
-
-<body id="page-top">
-
+{% extends "base.html" %}
+{% block content %}
   <!-- Navigation -->
-
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
     <div class="container">
       <a class="navbar-brand js-scroll-trigger" href="/"><img src="static/img/bao_logo.png" class="img-logo"></a>
@@ -34,30 +10,9 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <!--
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Projects
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="nav-link js-scroll-trigger" href="#DAP">Dorchester Art Project</a>
-              <a class="dropdown-item" href="#BMF">Brain Market Flea</a>
-              <a class="dropdown-item" href="#BC">Boston Compass</a>
-            </div>
-          </li>
-          -->
           <li class="nav-item pull-right">
             <a class="nav-link js-scroll-trigger" href="/">Home</a>
           </li>
-          
-          <!--
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="https://withfriends.co/brain_arts_organization_inc">Donate</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="https://docs.google.com/forms/d/e/1FAIpQLScssa9lAj2SxgiCUiizpFB03oRMVtVPXoF9bQBOATWh4jr8xw/viewform">Volunteer</a>
-          </li>
-          -->
         </ul>
       </div>
     </div>
@@ -188,96 +143,4 @@ their homes.</p>
       </div>
     </div>
   </section>
-
-  <!--
-  {% if blogs %}
-    {% for blogpost in blogs %}
-      <section>
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8 mx-auto">
-              <h2>{{ blogpost.title }}</h2>
-              <h5>{{ blogpost.date }}</h5>
-              <p class="lead">{{ blogpost.text }}</p>
-            </div>
-          </div>
-        </div>
-      </section>
-    {% endfor %}
-  {% else %}
-    <section>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 mx-auto">
-            <h2>No posts yet.  Check back later!</h2>
-          </div>
-        </div>
-      </div>
-    </section>
-  {% endif %}
-  -->
-
-  <!-- Footer -->
-  <footer style="padding-top: 20px; padding-bottom: 30px; background-color: #006666">
-
-
-    <div class="container">
-      <div class="row">
-        <img src="static/img/footer_border.png" class="img-footer">
-      </div>
-      <div class="row">
-        <div class="col" align="center">
-          <div class="row">
-            <div class="col">
-              <a href="https://brain-arts.org/">  
-                <img src="static/img/Brain_Arts_Shorthand_BlackWhite_Knockout.png" style="width: 60%;">
-              </a>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <a href="https://issuu.com/bostoncccompass">
-                <img src="static/img/bclogo.png" style="width: 50%;" align="right">
-              </a>
-            </div>
-            <div class="col">
-              <a href="https://dorchesterartproject.org/">
-                <img src="static/img/daplogo.png" style="width: 50%;" align="left">
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm" align="center">
-          <p class="m-0 text-center text-black" style="padding-right: 50px; padding-left: 50px;">Your daily guide, strictly focusing on the independent & underground music / art / film scenes and communities in Greater Boston and New England at large, and the often marginalized cultures that comprise and support them. Brain Arts Org is supported in part by a grant from the Boston Cultural Council, a local agency which is funded by the Massachusetts Cultural Council, administrated by the Mayor’s Office of Arts + Culture.</p>
-          <br>
-          <p class="m-0 text-center text-black">Copyright &copy; Brain Arts Org 2019</p>
-        </div>
-      </div>
-    </div>
-    <!--
-    <div class="container">
-      <p class="m-0 text-center text-white">Brain Arts Organization, a 501(c)(3) non-profit brought to you by the musicians, artists, writers, and enthusiasts of the Boston area.</p>
-      <br>
-      <p class="m-0 text-center text-white">Your daily guide, strictly focusing on the independent & underground music / art / film scenes and communities in Greater Boston and New England at large, and the often marginalized cultures that comprise and support them. Brain Arts Org is supported in part by a grant from the Boston Cultural Council, a local agency which is funded by the Massachusetts Cultural Council, administrated by the Mayor’s Office of Arts + Culture.</p>
-      <br>
-      <p class="m-0 text-center text-white">Copyright &copy; Brain Arts Org 2019</p>
-    </div>
-    small change
-    -->
-    <!-- /.container -->
-
-  </footer>
-
-  <!-- Bootstrap core JavaScript -->
-  <script src="static/jquery/jquery.min.js"></script>
-  <script src="static/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Plugin JavaScript -->
-  <script src="static/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom JavaScript for this theme -->
-  <script src="static/js/scrolling-nav.js"></script>
-
-</body>
-
-</html>
+{% endblock %}
