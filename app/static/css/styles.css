@@ -60,6 +60,14 @@ nav {
   width: 60%;
 }
 
+.blog-link {
+  font-size: 1.5em;
+}
+
+.blog-blurb {
+  font-size: 1em;
+}
+
 .responsiveCal {
   position: relative;
   padding-bottom: 75%;
