@@ -15,6 +15,34 @@ def db_login():
 	return connection
 
 
+def get_blog_posts():
+	connection = db_login()
+
+	with connection.cursor() as cursor:
+		query = 'SELECT title, author, date_published, img_link, content FROM blog_posts ORDER BY date_published;'
+		cursor.execute(query)
+		posts = cursor.fetchall()
+
+	connection.close()
+
+	return posts
+
+
+def create_blog_post(title, author, date_published, img_link, content):
+	connection = db_login()
+
+	with connection.cursor() as cursor:
+		# TODO: need to escape user input to prevent sql injection
+		query = 'INSERT INTO blog_posts (title, author, date_published, img_link, content) VALUES ({0}, {1}, {2}, {3}, {4});'.format(title, author, date_published, img_link, content)
+		cursor.execute(query)
+		posts = cursor.fetchall()
+
+	connection.close()
+
+	return posts
+
+
+# TODO: these remaining functions will be used for non gcal event listings
 def get_event_listings():
 	connection = db_login()
 	
