@@ -15,6 +15,21 @@ def db_login():
 	return connection
 
 
+def admin_login(username, password):
+	connection = db_login()
+	with connection.cursor() as cursor:
+		query = 'SELECT username, password FROM admin WHERE username = "' + username + '";'
+		cursor.execute(query)
+		login_info = cursor.fetch()
+
+	connection.close()
+
+	if login_info['password'] == password:
+		return True
+	else:
+		return False
+
+
 def get_blog_posts():
 	connection = db_login()
 
