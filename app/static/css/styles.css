@@ -21,6 +21,10 @@ nav {
   font-family: futura;
 }
 
+.fancy_links:hover {
+  color: #676767 !important;
+}
+
 .section-about {
   padding: 0px 0 50px;
 }
