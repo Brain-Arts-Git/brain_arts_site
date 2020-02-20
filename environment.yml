@@ -9,3 +9,4 @@ dependencies:
   - mysql
   - pymysql
   - python-dotenv
+  - markdown2
