@@ -1,4 +1,5 @@
 #!usr/bin/env python3
+import markdown2
 import pymysql
 
 # database functions
@@ -46,10 +47,12 @@ def get_blog_posts():
 def create_blog_post(title, author, date_published, img_link, content):
 	connection = db_login()
 
+	# convert markdown to html
+	html_content = markdown2.markdown(content)
+
 	with connection.cursor() as cursor:
-		# TODO: need to escape user input to prevent sql injection
-		query = 'INSERT INTO blog_posts (title, author, date_published, img_link, content) VALUES ({0}, {1}, {2}, {3}, {4});'.format(title, author, date_published, img_link, content)
-		cursor.execute(query)
+		query = 'INSERT INTO blog_posts (title, author, date_published, img_link, content) VALUES (%s, %s, %s, %s, %s);' 
+		cursor.execute(query, (title, author, date_published, img_link, html_content))
 		posts = cursor.fetchall()
 
 	connection.close()
