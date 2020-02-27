@@ -21,6 +21,10 @@ nav {
   font-family: futura;
 }
 
+label {
+  font-weight: bold;
+}
+
 .fancy_links:hover {
   color: #676767 !important;
 }
