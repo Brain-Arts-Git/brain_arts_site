@@ -1,0 +1,8 @@
+Useful Links
+- https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-18-04
+- https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-18-04-quickstart
+- https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands
+- https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-1804
+- https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps
+- https://dev.mysql.com/doc/mysql-getting-started/en/#mysql-getting-started-basic-ops
+- https://www.digitalocean.com/community/tutorials/how-to-create-a-new-user-and-grant-permissions-in-mysql

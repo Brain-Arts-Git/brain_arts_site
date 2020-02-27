@@ -23,6 +23,7 @@ nav {
 
 label {
   font-weight: bold;
+  font-size: 1.4rem;
 }
 
 .fancy_links:hover {

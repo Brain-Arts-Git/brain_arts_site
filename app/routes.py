@@ -1,12 +1,23 @@
-from flask import Flask, render_template, session, redirect, url_for, request, abort
+from flask import Flask, render_template, session, redirect, url_for, request, abort, flash
 from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user
+from werkzeug.utils import secure_filename
+from datetime import datetime
 from app import app
-import os
+import queries, os
 
 login_manager = LoginManager()
 login_manager.init_app(app)
 
 app.secret_key = os.urandom(16)
+
+UPLOAD_FOLDER = 'app/static/upload'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+def allowed_file(filename):
+	return '.' in filename and \
+		   filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 # user model
 class User(UserMixin):
@@ -33,7 +44,7 @@ def login():
 			id = 666
 			user = User(id)
 			login_user(user)
-			return render_template('admin.html')
+			return redirect('/create_post')
 		else:
 			return abort(401)
 	else:
@@ -43,7 +54,7 @@ def login():
 @login_required
 def logout():
 	logout_user()
-	return redirect('/login')
+	return redirect('/admin')
 
 @app.route('/')
 def home():
@@ -51,12 +62,48 @@ def home():
 
 @app.route('/blog')
 def blog():
-	# TODO: fn to query for blog posts
-	return render_template('blog.html')
+	post_title = request.args.get('post')
+	if post_title != '':
+		post = queries.get_blog_post(post_title)
+		return render_template('post.html', post=post)
+	else:
+		posts = queries.get_blog_posts()
+		return render_template('blog_posts.html', posts=posts)
 
-@app.route('/post')
-def post():
-	return render_template('post.html')
+@app.route('/create_post', methods=['GET', 'POST'])
+@login_required
+def create_post():
+	if request.method == 'POST':
+		# check if the post request has the file part
+		if 'file' not in request.files:
+			print('No file part')
+			return redirect('/create_post')
+
+		file = request.files['file']
+
+		# if user does not select file, browser also
+		# submit an empty part without filename
+		if file.filename == '':
+			flash('No selected file')
+			return redirect('/create_post')
+		if file and allowed_file(file.filename):
+			filename = secure_filename(file.filename)
+			img_id = queries.get_img_id()
+			file.save(os.path.join(app.config['UPLOAD_FOLDER'], str(img_id)))
+
+		title = request.form['title']
+		author = request.form['author']
+		content = request.form['content']
+		date_published = datetime.today().strftime('%Y-%m-%d')
+		queries.create_blog_post(title, author, date_published, img_id, content)
+		return render_template('post.html')
+	else:
+		return render_template('post.html')
+
+@app.route('/blog_posts')
+def blog_posts():
+	posts = queries.get_blog_posts()
+	return render_template('blog_posts.html', posts=posts)
 
 @app.route('/dn4s')
 def dn4s():

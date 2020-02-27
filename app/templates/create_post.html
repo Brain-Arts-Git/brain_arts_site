@@ -28,7 +28,7 @@
 				<div class="panel-heading">
 					<h1 align="center">Create Post</h1>
 				</div>
-				<form action="" method="post" style="padding: 15px">
+				<form enctype="multipart/form-data" action="" method="post" style="padding: 15px">
 
 					<div class="form-group">
 						<label>Title</label>
@@ -41,16 +41,18 @@
 					</div>
 
 					<div class="form-group">
-						<label for="img">Image</label><br>
-						<input type="file" id="img" name="img">
+						<label>Image</label><br>
+						<input type="file" id="img" name="file">
 					</div>
 
 					<div class="form-group">
 						<label>Content</label>
+						<p><span style="font-weight: bold">Important Note:</span> Content must use markdown format. To preview formatting visit <a href="https://stackedit.io/app#" target="_blank">https://stackedit.io/app#</a> and paste content into the left pane. For more information on markdown see <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">markdown cheatsheet</a>.</p>
+
 						<textarea class="form-control" rows="20" name="content"></textarea>
 					</div>
 
-					<button type="submit" class="btn btn-secondary" style="float: right">Create Post</button>
+					<button type="submit" class="btn btn-secondary" style="float: right">Submit</button>
 				</form>
 			</div>
 		</div>
