@@ -10,3 +10,4 @@ dependencies:
   - pymysql
   - python-dotenv
   - markdown2
+  - flask-login

@@ -33,12 +33,18 @@
 						<input class="form-control" type="text" name="" placeholder="Password">
 					</div>
 				</div>
-				<button class="btn-secondary" style="float: right">Login</button>
+				<button class="btn btn-secondary" style="float: right">Login</button>
 			</div>
 		</div>
 		<div class="col-md-3"></div>
 	</div>
 </div>
 
-<div style="height: 604px;"></div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script>
+	$('#myFooter').hide();
+</script>
 {% endblock %}
