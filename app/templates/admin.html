@@ -13,6 +13,11 @@
 			<li class="nav-item pull-right">
 				<a class="nav-link js-scroll-trigger" href="/">Home</a>
 			</li>
+			{% if current_user.is_authenticated %}
+			<li class="nav-item pull-right">
+				<a class="nav-link js-scroll-trigger" href="/logout">Logout</a>
+			</li>
+			{% endif %}
 		</ul>
 		</div>
 	</div>
@@ -25,15 +30,17 @@
 				<div class="panel-heading">
 					<h3 align="center">Admin Login</h4>
 				</div>
-				<div style="padding: 15px">
-					<div class="form-group">
-						<input class="form-control" type="text" name="" placeholder="Username">
+				<form action="" method="post">
+					<div style="padding: 15px">
+						<div class="form-group">
+							<input class="form-control" type="text" name="username" placeholder="Username">
+						</div>
+						<div class="form-group">
+							<input class="form-control" type="text" name="password" placeholder="Password">
+						</div>
 					</div>
-					<div class="form-group">
-						<input class="form-control" type="text" name="" placeholder="Password">
-					</div>
-				</div>
-				<button class="btn btn-secondary" style="float: right">Login</button>
+					<button type="submit" class="btn btn-secondary" style="float: right">Login</button>
+				</form>
 			</div>
 		</div>
 		<div class="col-md-3"></div>
