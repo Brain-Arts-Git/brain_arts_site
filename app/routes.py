@@ -24,7 +24,7 @@ class User(UserMixin):
 	def __init__(self, id):
 		self.id = id
 		self.name = 'admin'
-		self.password = open('admin.login', 'r').read()
+		self.password = open('admin.login', 'r').read().strip()
 		
 	def __repr__(self):
 		return "%d/%s/%s" % (self.id, self.name, self.password)
@@ -40,7 +40,7 @@ def login():
 	if request.method == 'POST':
 		username = request.form['username']
 		password = request.form['password']
-		if username == 'admin' and password == open('admin.login', 'r').read():
+		if username == 'admin' and password == open('admin.login', 'r').read().strip():
 			id = 666
 			user = User(id)
 			login_user(user)
