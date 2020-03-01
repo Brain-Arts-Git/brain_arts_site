@@ -62,9 +62,9 @@ def home():
 
 @app.route('/blog')
 def blog():
-	post_title = request.args.get('post')
-	if post_title != '':
-		post = queries.get_blog_post(post_title)
+	link_name = request.args.get('post')
+	if link_name != None:
+		post = queries.get_post(link_name)
 		return render_template('post.html', post=post)
 	else:
 		posts = queries.get_blog_posts()
@@ -74,6 +74,7 @@ def blog():
 @login_required
 def create_post():
 	if request.method == 'POST':
+		# TODO: need to either show error or change behavior
 		# check if the post request has the file part
 		if 'file' not in request.files:
 			print('No file part')
@@ -96,9 +97,9 @@ def create_post():
 		content = request.form['content']
 		date_published = datetime.today().strftime('%Y-%m-%d')
 		queries.create_blog_post(title, author, date_published, img_id, content)
-		return render_template('post.html')
+		return render_template('create_post.html')
 	else:
-		return render_template('post.html')
+		return render_template('create_post.html')
 
 @app.route('/blog_posts')
 def blog_posts():

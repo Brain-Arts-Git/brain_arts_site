@@ -19,7 +19,7 @@ def get_blog_posts():
 	connection = db_login()
 
 	with connection.cursor() as cursor:
-		query = 'SELECT title, author, date_published, img_id, content FROM blog_posts ORDER BY date_published;'
+		query = 'SELECT title, link_name, author, DATE_FORMAT(date_published, "%M %e, %Y") as date_published, img_id, content FROM blog_posts ORDER BY date_published;'
 		cursor.execute(query)
 		posts = cursor.fetchall()
 
@@ -31,13 +31,13 @@ def get_blog_posts():
 
 	return posts
 
-def get_post(title):
+def get_post(link_name):
 	connection = db_login()
 
 	with connection.cursor() as cursor:
-		query = 'SELECT title, author, date_published, img_id, content FROM blog_posts WHERE title = %s;'
-		cursor.execute(query, (title))
-		post = cursor.fetchall()
+		query = 'SELECT title, author, DATE_FORMAT(date_published, "%%M %%e, %%Y") as date_published, img_id, content FROM blog_posts WHERE link_name = %s;'
+		cursor.execute(query, (link_name))
+		post = cursor.fetchone()
 
 	connection.close()
 
@@ -50,9 +50,11 @@ def get_post(title):
 def create_blog_post(title, author, date_published, img_id, content):
 	connection = db_login()
 
+	link_name = title.replace(' ', '_')
+
 	with connection.cursor() as cursor:
-		query = 'INSERT INTO blog_posts (title, author, date_published, img_id, content) VALUES (%s, %s, %s, %s, %s);' 
-		cursor.execute(query, (title, author, date_published, img_id, content))
+		query = 'INSERT INTO blog_posts (title, link_name, author, date_published, img_id, content) VALUES (%s, %s, %s, %s, %s, %s);' 
+		cursor.execute(query, (title, link_name, author, date_published, img_id, content))
 		posts = cursor.fetchall()
 
 	connection.close()
