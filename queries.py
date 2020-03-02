@@ -27,22 +27,23 @@ def get_blog_posts():
 
 	for post in posts:
 		# only show first 500 characters of each post
-		post['content'] = post['content'][0:500]
+		post['content'] = markdown2.markdown(post['content'][0:500].replace('#', '')+'...')
 
 	return posts
+
 
 def get_post(link_name):
 	connection = db_login()
 
 	with connection.cursor() as cursor:
-		query = 'SELECT title, author, DATE_FORMAT(date_published, "%%M %%e, %%Y") as date_published, img_id, content FROM blog_posts WHERE link_name = %s;'
+		query = 'SELECT id, title, link_name, author, DATE_FORMAT(date_published, "%%M %%e, %%Y") AS date_published, img_id, content AS html_content, content FROM blog_posts WHERE link_name = %s;'
 		cursor.execute(query, (link_name))
 		post = cursor.fetchone()
 
 	connection.close()
 
 	# convert markdown to html
-	post['content'] = markdown2.markdown(post['content'])
+	post['html_content'] = markdown2.markdown(post['html_content'])
 
 	return post
 
@@ -55,11 +56,22 @@ def create_blog_post(title, author, date_published, img_id, content):
 	with connection.cursor() as cursor:
 		query = 'INSERT INTO blog_posts (title, link_name, author, date_published, img_id, content) VALUES (%s, %s, %s, %s, %s, %s);' 
 		cursor.execute(query, (title, link_name, author, date_published, img_id, content))
-		posts = cursor.fetchall()
 
 	connection.close()
 
-	return posts
+
+def update_blog_post(post_id, title, author, content):
+	connection = db_login()
+
+	link_name = title.replace(' ', '_')
+
+	with connection.cursor() as cursor:
+		query = 'UPDATE blog_posts SET title = %s, link_name = %s, author = %s, content = %s WHERE id = %s;'
+		cursor.execute(query, (title, link_name, author, content, post_id))
+
+	connection.close()
+
+	return link_name
 
 
 def get_img_id():
@@ -79,30 +91,14 @@ def get_img_id():
 
 	return next_id
 
-
-# TODO: these remaining functions will be used for non gcal event listings
-def get_event_listings():
-	connection = db_login()
-	
-	with connection.cursor() as cursor:
-		query = 'SELECT event_name, event_venue, event_time FROM event_listings ORDER BY event_time LIMIT 10;'
-		cursor.execute(query)
-		events = cursor.fetchall()
-
-	connection.close()
-
-	return events
-
-
-def create_event_listing(event_name, event_time, event_location):
+def get_current_img_id(post_id):
 	connection = db_login()
 
 	with connection.cursor() as cursor:
-		# TODO: need to escape user input to prevent sql injection
-		query = 'INSERT INTO event_listings (event_name, event_venue, event_time) VALUES ({0}, {1}, {2});'.format(event_name, event_venue, event_time)
-		# TODO: probably need try except in case this fails
-		cursor.execute(query)
+		query = 'SELECT img_id FROM blog_posts WHERE id = %s;'
+		cursor.execute(query, (post_id))
+		img_id = cursor.fetchone()
 
 	connection.close()
 
-	return 'Event Created!'
+	return img_id['img_id']

@@ -38,7 +38,7 @@
                 <h5>By {{ post.author }}</h5>
                 <p>{{ post.date_published }}</p>
                 <p class="blog-blurb">
-                  {{ post.content }}...
+                  {{ post.content|safe }}
                 </p>
               </div>
             </div>

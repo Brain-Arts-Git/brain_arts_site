@@ -97,9 +97,32 @@ def create_post():
 		content = request.form['content']
 		date_published = datetime.today().strftime('%Y-%m-%d')
 		queries.create_blog_post(title, author, date_published, img_id, content)
-		return render_template('create_post.html')
+		return redirect('/blog')
 	else:
 		return render_template('create_post.html')
+
+@app.route('/edit', methods=['GET', 'POST'])
+@login_required
+def edit_post():
+	if request.method == 'POST':
+		file = request.files['file']
+		title = request.form['title']
+		author = request.form['author']
+		content = request.form['content']
+		post_id = request.form['post_id']
+
+		if file and allowed_file(file.filename):
+			filename = secure_filename(file.filename)
+			img_id = queries.get_current_img_id(post_id)
+			file.save(os.path.join(app.config['UPLOAD_FOLDER'], str(img_id)))
+
+		date_published = datetime.today().strftime('%Y-%m-%d')
+		link_name = queries.update_blog_post(post_id, title, author, content)
+		return redirect('/blog?post='+link_name)
+	else:
+		link_name = request.args.get('post')
+		post = queries.get_post(link_name)
+		return render_template('edit_post.html', post=post)
 
 @app.route('/blog_posts')
 def blog_posts():

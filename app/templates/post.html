@@ -16,6 +16,11 @@
 					<li class="nav-item pull-right">
 						<a class="nav-link js-scroll-trigger" href="/blog">Blog</a>
 					</li>
+					{% if current_user.is_authenticated %}
+					<li class="nav-item pull-right">
+						<a class="nav-link js-scroll-trigger" href="/logout">Logout</a>
+					</li>
+					{% endif %}
 				</ul>
 			</div>
 		</div>
@@ -26,16 +31,20 @@
 
 	<section>
 		<div class="container">
+			{% if current_user.is_authenticated %}
+			<a class="btn btn-success" href="edit?post={{ post.link_name }}" style="float: right">
+				Edit Post
+			</a>
+			{% endif %}
 			<div class="row">
 				<div class="col-lg-8 mx-auto lead">
 					<h1>{{ post.title }}</h1>
 					<h4>By {{ post.author }}</h4>
 					<p>{{ post.date_published }}</p>
-					<br>
 					<img src="static/upload/{{ post.img_id }}" style="display: block;margin-left: auto;margin-right: auto; width: 75%;">
 					<br>
 
-					{{ post.content|safe }}
+					{{ post.html_content|safe }}
 				</div>
 			</div>
 		</div>
