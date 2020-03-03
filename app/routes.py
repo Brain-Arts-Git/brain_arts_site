@@ -40,7 +40,7 @@ def login():
 	if request.method == 'POST':
 		username = request.form['username']
 		password = request.form['password']
-		if username == 'admin' and password == open('admin.login', 'r').read().strip():
+		if username == 'admin' and password == open('/var/www/brain_arts_site/admin.login', 'r').read().strip():
 			id = 666
 			user = User(id)
 			login_user(user)

@@ -5,7 +5,7 @@ import pymysql
 # database functions
 
 def db_login():
-	with open('db.login', 'r') as f:
+	with open('/var/www/brain_arts_site/db.login', 'r') as f:
 		user = next(f).strip()
 		pswd = next(f).strip()
 
