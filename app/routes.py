@@ -24,8 +24,8 @@ class User(UserMixin):
 	def __init__(self, id):
 		self.id = id
 		self.name = 'admin'
-		self.password = open('admin.login', 'r').read().strip()
-		
+		self.password = open('/var/www/brain_arts_site/admin.login', 'r').read().strip()
+
 	def __repr__(self):
 		return "%d/%s/%s" % (self.id, self.name, self.password)
 
