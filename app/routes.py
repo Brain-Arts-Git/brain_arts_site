@@ -10,7 +10,7 @@ login_manager.init_app(app)
 
 app.secret_key = os.urandom(16)
 
-UPLOAD_FOLDER = '/var/www/brain_arts_site/app/static'
+UPLOAD_FOLDER = '/var/www/brain_arts_site/app/static/upload'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
