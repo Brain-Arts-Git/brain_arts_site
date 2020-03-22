@@ -9,9 +9,11 @@ import queries, os
 if app.config['DEBUG'] == True:
 	login_path = '.admin_login'
 	upload_path = 'app/static/upload'
+	secret_key = '.secret_key'
 else:
 	login_path = '/var/www/brain_arts_site/.admin_login'
 	upload_path = '/var/www/brain_arts_site/app/static/upload'
+	secret_key = '/var/www/brain_arts_site/.secret_key'
 
 login_manager = LoginManager()
 login_manager.init_app(app)
