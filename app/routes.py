@@ -18,7 +18,7 @@ else:
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-app.secret_key = open('.secret_key', 'rb').read()
+app.secret_key = open(secret_key, 'rb').read()
 
 UPLOAD_FOLDER = upload_path
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
