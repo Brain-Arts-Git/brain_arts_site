@@ -1,4 +1,5 @@
-
 *.pyc
-*.login
 app/static/upload/*
+.admin_login
+.db_login
+.secret_key

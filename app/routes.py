@@ -5,12 +5,20 @@ from datetime import datetime
 from app import app
 import queries, os
 
+# set paths for current env
+if app.config['DEBUG'] == True:
+	login_path = '.admin_login'
+	upload_path = 'app/static/upload'
+else:
+	login_path = '/var/www/brain_arts_site/.admin_login'
+	upload_path = '/var/www/brain_arts_site/app/static/upload'
+
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-app.secret_key = os.urandom(16)
+app.secret_key = open('.secret_key', 'rb').read()
 
-UPLOAD_FOLDER = '/var/www/brain_arts_site/app/static/upload'
+UPLOAD_FOLDER = upload_path
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -24,7 +32,7 @@ class User(UserMixin):
 	def __init__(self, id):
 		self.id = id
 		self.name = 'admin'
-		self.password = open('/var/www/brain_arts_site/admin.login', 'r').read().strip()
+		self.password = open(login_path, 'r').read().strip()
 
 	def __repr__(self):
 		return "%d/%s/%s" % (self.id, self.name, self.password)
@@ -40,7 +48,7 @@ def login():
 	if request.method == 'POST':
 		username = request.form['username']
 		password = request.form['password']
-		if username == 'admin' and password == open('/var/www/brain_arts_site/admin.login', 'r').read().strip():
+		if username == 'admin' and password == open(login_path, 'r').read().strip():
 			id = 666
 			user = User(id)
 			login_user(user)

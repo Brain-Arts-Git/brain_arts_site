@@ -1,11 +1,18 @@
 #!usr/bin/env python3
+from app import app
 import markdown2
 import pymysql
 
 # database functions
 
 def db_login():
-	with open('/var/www/brain_arts_site/db.login', 'r') as f:
+	# set paths for current env
+	if app.config['DEBUG'] == True:
+		db_login_path = '.db_login'
+	else:
+		db_login_path = '/var/www/brain_arts_site/.db_login'
+
+	with open(db_login_path, 'r') as f:
 		user = next(f).strip()
 		pswd = next(f).strip()
 
