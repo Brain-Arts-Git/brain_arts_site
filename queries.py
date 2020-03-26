@@ -26,7 +26,7 @@ def get_blog_posts():
 	connection = db_login()
 
 	with connection.cursor() as cursor:
-		query = 'SELECT title, link_name, author, DATE_FORMAT(date_published, "%M %e, %Y") as date_published, img_id, content FROM blog_posts ORDER BY date_published;'
+		query = 'SELECT title, link_name, author, DATE_FORMAT(date_published, "%M %e, %Y") as date_published, img_id, content FROM blog_posts ORDER BY date_published DESC;'
 		cursor.execute(query)
 		posts = cursor.fetchall()
 
