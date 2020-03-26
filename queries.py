@@ -1,4 +1,5 @@
 #!usr/bin/env python3
+from slugify import slugify
 from app import app
 import markdown2
 import pymysql
@@ -61,7 +62,7 @@ def get_post(link_name):
 def create_blog_post(title, author, date_published, img_id, content):
 	connection = db_login()
 
-	link_name = title.replace(' ', '_')
+	link_name = slugify(title)
 
 	with connection.cursor() as cursor:
 		query = 'INSERT INTO blog_posts (title, link_name, author, date_published, img_id, content) VALUES (%s, %s, %s, %s, %s, %s);' 
