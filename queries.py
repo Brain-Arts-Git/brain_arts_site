@@ -74,7 +74,7 @@ def create_blog_post(title, author, date_published, img_id, content):
 def update_blog_post(post_id, title, author, content):
 	connection = db_login()
 
-	link_name = title.replace(' ', '_')
+	link_name = slugify(title)
 
 	with connection.cursor() as cursor:
 		query = 'UPDATE blog_posts SET title = %s, link_name = %s, author = %s, content = %s WHERE id = %s;'
