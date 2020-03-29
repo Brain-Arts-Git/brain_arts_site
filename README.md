@@ -19,6 +19,7 @@ Brain Arts Organization is a volunteer run 501(c)3 arts nonprofit for Greater Bo
 - python-dotenv
 - markdown2
 - flask-login
+- python-slugify
 
 ## Host Server Setup
 - Provision Ubuntu 18.04 Server from cloud provider

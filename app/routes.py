@@ -134,6 +134,10 @@ def edit_post():
 		post = queries.get_post(link_name)
 		return render_template('edit_post.html', post=post)
 
+@app.route('/about')
+def about():
+	return render_template('about.html')
+
 @app.route('/dn4s')
 def dn4s():
 	return render_template('dn4s.html')
