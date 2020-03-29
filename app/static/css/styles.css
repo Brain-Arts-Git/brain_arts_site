@@ -25,6 +25,11 @@ label {
   font-weight: bold;
   font-size: 1.4rem;
 }
+
+img {
+  width: 100%;
+}
+
 .dropdown-item.active {
   background-color: white;
   color: black;

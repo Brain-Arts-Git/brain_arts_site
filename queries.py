@@ -53,8 +53,12 @@ def get_post(link_name):
 	# convert markdown to html
 	post['html_content'] = markdown2.markdown(post['html_content'])
 
-	# decode utf8 content
-	post['content'] = post['content'].decode('utf-8')
+	# decoding only needed for production
+	try:
+		# decode utf8 content
+		post['content'] = post['content'].decode('utf-8')
+	except:
+		pass
 
 	return post
 
