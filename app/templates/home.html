@@ -26,6 +26,11 @@
 						<a class="dropdown-item js-scroll-trigger" href="#BC">Boston Compass</a>
 					</div>
 				</li>
+				{% if current_user.is_authenticated %}
+				<li class="nav-item pull-right">
+					<a class="nav-link js-scroll-trigger" href="/logout">Logout</a>
+				</li>
+				{% endif %}
 			</ul>
 		</div>
 	</div>
