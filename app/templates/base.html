@@ -25,7 +25,8 @@
 	{% endblock %}		
 </head>
 
-<body id="page-top">
+<!-- padding needed for navbar -->
+<body id="page-top" style="padding-top: 56px;">
 	{% block nav %}
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
@@ -46,11 +47,11 @@
 						<a class="nav-link" href="https://withfriends.co/brain_arts_organization_inc/join" target="_blank">Donate</a>
 					</li>
 					<li class="nav-item dropdown pull-right">
-						<a class="nav-link dropdown-toggle js-scroll-trigger" href="#Contact" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
+						<a class="nav-link dropdown-toggle js-scroll-trigger" href="/about" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item js-scroll-trigger" href="#DAP">Dorchester Art Project</a>
-							<a class="dropdown-item js-scroll-trigger" href="#BMF">Brain Arts Market</a>
-							<a class="dropdown-item js-scroll-trigger" href="#BC">Boston Compass</a>
+							<a class="dropdown-item js-scroll-trigger" href="/#DAP">Dorchester Art Project</a>
+							<a class="dropdown-item js-scroll-trigger" href="/#BMF">Brain Arts Market</a>
+							<a class="dropdown-item js-scroll-trigger" href="/#BC">Boston Compass</a>
 						</div>
 					</li>
 					{% if current_user.is_authenticated %}

@@ -3,22 +3,17 @@
  * Copyright 2013-2019 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-scrolling-nav/blob/master/LICENSE)
  */
-header {
+
+* {
   font-family: futura;
+}
+
+header {
   background-position: center; 
 }
 
 section {
   padding: 40px 0 40px;
-  font-family: futura;
-}
-
-footer {
-  font-family: futura;
-}
-
-nav {
-  font-family: futura;
 }
 
 label {
@@ -46,10 +41,6 @@ img {
 .section-contact {
   padding: 30px 0 30px;
   background-color: #F5F5F5;
-}
-
-.blog-header {
-  height: 0px;
 }
 
 .img-logo {
