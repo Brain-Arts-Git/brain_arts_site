@@ -34,9 +34,13 @@ def get_blog_posts():
 	connection.close()
 
 	for post in posts:
-		# decode utf8 content
-		post['title'] = post['title'].decode('utf-8')
-		post['content'] = post['content'].decode('utf-8')
+		# decoding only needed for production
+		try:
+			# decode utf8 content
+			post['title'] = post['title'].decode('utf-8')
+			post['content'] = post['content'].decode('utf-8')
+		except:
+			pass
 		# only show first 500 characters of each post
 		post['content'] = markdown2.markdown(post['content'][0:500].replace('#', '')+'...')
 
