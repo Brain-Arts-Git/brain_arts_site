@@ -34,6 +34,9 @@ def get_blog_posts():
 	connection.close()
 
 	for post in posts:
+		# decode utf8 content
+		post['title'] = post['title'].decode('utf-8')
+		post['content'] = post['content'].decode('utf-8')
 		# only show first 500 characters of each post
 		post['content'] = markdown2.markdown(post['content'][0:500].replace('#', '')+'...')
 
@@ -50,15 +53,17 @@ def get_post(link_name):
 
 	connection.close()
 
-	# convert markdown to html
-	post['html_content'] = markdown2.markdown(post['html_content'])
-
 	# decoding only needed for production
 	try:
 		# decode utf8 content
+		post['title'] = post['title'].decode('utf-8')
 		post['content'] = post['content'].decode('utf-8')
+		post['html_content'] = post['html_content'].decode('utf-8')
 	except:
 		pass
+
+	# convert markdown to html
+	post['html_content'] = markdown2.markdown(post['html_content'])
 
 	return post
 
