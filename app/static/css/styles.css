@@ -78,26 +78,16 @@ img {
 }
 
 @media (max-width: 1200px) {
-  .responsive_cal_mobile {
-    position: relative;
-    padding-bottom: 100%;
-    height: 0;
-    overflow: hidden;
-  }
-
-  .responsive_cal_mobile iframe {
-    position: absolute;
-    top:0; left: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  .responsive_cal_desktop {
-    display: none;
-  }
+  
 }
 
+/* Desktop Only */
 @media (min-width: 1200px) {
+  .about_img {
+    float: right;
+    width: 50%;
+  }
+
   .responsive_cal_desktop {
     position: relative;
     padding-bottom: 75%;
@@ -115,25 +105,51 @@ img {
   .responsive_cal_mobile {
     display: none;
   }
-}
 
-@media (max-width : 1200px) {
-  .icon-div {
-    text-align: center;
-    padding: 20px;
-  }
-  .chosen-shows {
-    padding-top: 30px;
-  }
-}
-
-@media (min-width: 1200px) {
   .icon-div {
     text-align: center;
     margin-top: -100px;
   }
+
   .chosen-shows {
     padding-top: 80px;
+  }
+}
+
+/* Mobile Only */
+@media (max-width : 1200px) {
+  .about_img {
+    width: 100%;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 10px;
+  }
+
+  .responsive_cal_mobile {
+    position: relative;
+    padding-bottom: 100%;
+    height: 0;
+    overflow: hidden;
+  }
+
+  .responsive_cal_mobile iframe {
+    position: absolute;
+    top:0; left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .responsive_cal_desktop {
+    display: none;
+  }
+
+  .icon-div {
+    text-align: center;
+    padding: 20px;
+  }
+
+  .chosen-shows {
+    padding-top: 30px;
   }
 }
 
