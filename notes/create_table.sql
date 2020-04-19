@@ -8,3 +8,8 @@ CREATE TABLE `blog_posts` (
 	`content` mediumtext NOT NULL,
 	PRIMARY KEY (`id`)
 );
+
+CREATE TABLE `img_ids` (
+	`id` int(11) unsigned NOT NULL,
+	PRIMARY KEY (`id`)
+);

@@ -25,10 +25,6 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-def allowed_file(filename):
-	return '.' in filename and \
-		   filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
 # user model
 class User(UserMixin):
 	def __init__(self, id):
@@ -40,6 +36,10 @@ class User(UserMixin):
 		return "%d/%s/%s" % (self.id, self.name, self.password)
 
 myUser = User(666)
+
+def allowed_file(filename):
+	return '.' in filename and \
+		   filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -133,6 +133,23 @@ def edit_post():
 		link_name = request.args.get('post')
 		post = queries.get_post(link_name)
 		return render_template('edit_post.html', post=post)
+
+@app.route('/upload', methods=['GET', 'POST'])
+@login_required
+def upload():
+	if request.method == 'POST':
+		file = request.files['file']
+
+		if file and allowed_file(file.filename):
+			filename = secure_filename(file.filename)
+			img_id = queries.get_img_id()
+			file.save(os.path.join(app.config['UPLOAD_FOLDER'], str(img_id)))
+
+		img_url = '![enter image description here](/static/upload/' + str(img_id) + ')'
+
+		return render_template('upload.html', img_url=img_url)
+	else:
+		return render_template('upload.html')
 
 @app.route('/about')
 def about():

@@ -102,18 +102,22 @@ def get_img_id():
 	connection = db_login()
 
 	with connection.cursor() as cursor:
-		query = 'SELECT max(img_id) AS "id" FROM blog_posts;'
+		query = 'SELECT max(id) AS "id" FROM img_ids;'
 		cursor.execute(query)
 		max_id = cursor.fetchone()
 
+		if max_id['id'] is not None:
+			next_id = int(max_id['id']) + 1
+		else:
+			next_id = 1
+
+		query = 'INSERT INTO img_ids (id) VALUES (' + str(next_id) + ');'
+		cursor.execute(query)
+
 	connection.close()
 
-	if max_id['id'] is not None:
-		next_id = int(max_id['id']) + 1
-	else:
-		next_id = 1
-
 	return next_id
+
 
 def get_current_img_id(post_id):
 	connection = db_login()
