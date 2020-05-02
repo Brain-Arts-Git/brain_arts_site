@@ -39,6 +39,7 @@ def get_blog_posts():
 			# decode utf8 content
 			post['title'] = post['title'].decode('utf-8')
 			post['content'] = post['content'].decode('utf-8')
+			post['author'] = post['author'].decode('utf-8')
 		except:
 			pass
 		# only show first 500 characters of each post
