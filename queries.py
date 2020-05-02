@@ -63,6 +63,7 @@ def get_post(link_name):
 		post['title'] = post['title'].decode('utf-8')
 		post['content'] = post['content'].decode('utf-8')
 		post['html_content'] = post['html_content'].decode('utf-8')
+		post['author'] = post['author'].decode('utf-8')
 	except:
 		pass
 
