@@ -4,3 +4,4 @@ app/static/upload/*
 .db_login
 .secret_key
 notes/To_Do_List.txt
+notes/instructions.md
