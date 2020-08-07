@@ -104,7 +104,7 @@ def get_img_id():
 	connection = db_login()
 
 	with connection.cursor() as cursor:
-		query = 'SELECT max(id) AS "id" FROM img_ids;'
+		query = 'SELECT max(id) AS "id" FROM service_img_ids;'
 		cursor.execute(query)
 		max_id = cursor.fetchone()
 
@@ -113,7 +113,7 @@ def get_img_id():
 		else:
 			next_id = 1
 
-		query = 'INSERT INTO img_ids (id) VALUES (' + str(next_id) + ');'
+		query = 'INSERT INTO service_img_ids (id) VALUES (' + str(next_id) + ');'
 		cursor.execute(query)
 
 	connection.close()
@@ -132,3 +132,112 @@ def get_current_img_id(post_id):
 	connection.close()
 
 	return img_id['img_id']
+
+
+
+
+def get_services():
+	connection = db_login()
+
+	with connection.cursor() as cursor:
+		query = 'SELECT title, link_name, signup_link, DATE_FORMAT(date_published, "%M %e, %Y") AS date_published, img_id, content, date_published AS unformatted_date FROM services ORDER BY unformatted_date DESC;'
+		cursor.execute(query)
+		services = cursor.fetchall()
+
+	connection.close()
+
+	for service in services:
+		# decoding only needed for production
+		try:
+			# decode utf8 content
+			service['title'] = service['title'].decode('utf-8')
+			service['content'] = service['content'].decode('utf-8')
+			service['author'] = service['author'].decode('utf-8')
+		except:
+			pass
+		# only show first 500 characters of each service
+		service['content'] = markdown2.markdown(service['content'][0:500].replace('#', '')+'...')
+
+	return services
+
+def create_service(title, signup_link, date_published, img_id, content):
+	connection = db_login()
+
+	link_name = slugify(title)
+
+	with connection.cursor() as cursor:
+		query = 'INSERT INTO services (title, link_name, signup_link, date_published, img_id, content) VALUES (%s, %s, %s, %s, %s, %s);' 
+		cursor.execute(query, (title, link_name, signup_link, date_published, img_id, content))
+
+	connection.close()
+
+def get_service(link_name):
+	connection = db_login()
+
+	with connection.cursor() as cursor:
+		query = 'SELECT id, title, link_name, signup_link, DATE_FORMAT(date_published, "%%M %%e, %%Y") AS date_published, img_id, content AS html_content, content FROM services WHERE link_name = %s;'
+		cursor.execute(query, (link_name))
+		service = cursor.fetchone()
+
+	connection.close()
+
+	# decoding only needed for production
+	try:
+		# decode utf8 content
+		service['title'] = service['title'].decode('utf-8')
+		service['content'] = service['content'].decode('utf-8')
+		service['html_content'] = service['html_content'].decode('utf-8')
+		service['signup_link'] = service['signup_link'].decode('utf-8')
+	except:
+		pass
+
+	# convert markdown to html
+	service['html_content'] = markdown2.markdown(service['html_content'])
+
+	return service	
+
+def update_service(service_id, title, signup_link, content):
+	connection = db_login()
+
+	link_name = slugify(title)
+
+	with connection.cursor() as cursor:
+		query = 'UPDATE services SET title = %s, link_name = %s, signup_link = %s, content = %s WHERE id = %s;'
+		cursor.execute(query, (title, link_name, signup_link, content, service_id))
+
+	connection.close()
+
+	return link_name	
+
+def get_service_img_id():
+	connection = db_login()
+
+	with connection.cursor() as cursor:
+		query = 'SELECT max(id) AS "id" FROM service_img_ids;'
+		cursor.execute(query)
+		max_id = cursor.fetchone()
+
+		if max_id['id'] is not None:
+			next_id = int(max_id['id']) + 1
+		else:
+			next_id = 1
+
+		query = 'INSERT INTO service_img_ids (id) VALUES (' + str(next_id) + ');'
+		cursor.execute(query)
+
+	connection.close()
+
+	return next_id
+
+
+def get_current_service_img_id(service_id):
+	connection = db_login()
+
+	with connection.cursor() as cursor:
+		query = 'SELECT img_id FROM services WHERE id = %s;'
+		cursor.execute(query, (service_id))
+		img_id = cursor.fetchone()
+
+	connection.close()
+
+	return img_id['img_id']	
