@@ -104,7 +104,7 @@ def get_img_id():
 	connection = db_login()
 
 	with connection.cursor() as cursor:
-		query = 'SELECT max(id) AS "id" FROM service_img_ids;'
+		query = 'SELECT max(id) AS "id" FROM img_ids;'
 		cursor.execute(query)
 		max_id = cursor.fetchone()
 
@@ -113,7 +113,7 @@ def get_img_id():
 		else:
 			next_id = 1
 
-		query = 'INSERT INTO service_img_ids (id) VALUES (' + str(next_id) + ');'
+		query = 'INSERT INTO img_ids (id) VALUES (' + str(next_id) + ');'
 		cursor.execute(query)
 
 	connection.close()

@@ -9,12 +9,12 @@ import queries, os
 if app.config['DEBUG'] == True:
 	login_path = '.admin_login'
 	upload_path = 'app/static/upload'
-	service_upload_path = 'app/static/upload/service'
+	service_upload_path = 'app/static/service_upload'
 	secret_key = '.secret_key'
 else:
 	login_path = '/var/www/brain_arts_site/.admin_login'
 	upload_path = '/var/www/brain_arts_site/app/static/upload'
-	service_upload_path = '/var/www/brain_arts_site/app/static/upload/service'
+	service_upload_path = '/var/www/brain_arts_site/app/static/service_upload'
 	secret_key = '/var/www/brain_arts_site/.secret_key'
 
 login_manager = LoginManager()
@@ -22,12 +22,13 @@ login_manager.init_app(app)
 
 app.secret_key = open(secret_key, 'rb').read()
 
+
 UPLOAD_FOLDER = upload_path
 SERVICE_UPLOAD_FOLDER = service_upload_path
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config['SERVICE_UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['SERVICE_UPLOAD_FOLDER'] = SERVICE_UPLOAD_FOLDER
 
 
 # user model

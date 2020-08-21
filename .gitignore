@@ -1,5 +1,6 @@
 *.pyc
 app/static/upload/*
+app/static/service_upload/*
 .admin_login
 .db_login
 .secret_key
