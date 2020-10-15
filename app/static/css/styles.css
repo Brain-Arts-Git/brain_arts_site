@@ -25,6 +25,10 @@ img {
   width: 100%;
 }
 
+strong {
+  font-weight: bold;
+}
+
 .dropdown-item.active {
   background-color: white;
   color: black;
