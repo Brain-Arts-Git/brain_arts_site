@@ -157,11 +157,15 @@ def upload():
 	else:
 		return render_template('upload.html')
 
-	
+
 
 @app.route('/about')
 def about():
 	return render_template('about.html')
+
+@app.route('/staff')
+def staff():
+	return render_template('staff.html')
 
 @app.route('/dn4s')
 def dn4s():
@@ -170,72 +174,3 @@ def dn4s():
 @app.route('/no_fucker')
 def no_fucker():
 	return render_template('no_fucker.html')
-
-
-
-# SERVICES
-
-
-@app.route('/services')
-def services():
-	link_name = request.args.get('service')
-	if link_name != None:
-		service = queries.get_service(link_name)
-		return render_template('service.html', service=service)
-	else:
-		services = queries.get_services()
-		return render_template('services.html', services=services)
-
-@app.route('/create_service', methods=['GET', 'POST'])
-@login_required
-def create_service():
-	if request.method == 'POST':
-		# TODO: need to either show error or change behavior
-		# check if the post request has the file part
-		if 'file' not in request.files:
-			print('No file part')
-			return redirect('/create_service')
-
-		file = request.files['file']
-
-		# if user does not select file, browser also
-		# submit an empty part without filename
-		if file.filename == '':
-			flash('No selected file')
-			return redirect('/create_service')
-		if file and allowed_file(file.filename):
-			filename = secure_filename(file.filename)
-			img_id = queries.get_service_img_id()
-			file.save(os.path.join(app.config['SERVICE_UPLOAD_FOLDER'], str(img_id)))
-
-		title = request.form['title']
-		signup_link = request.form['signup_link']
-		content = request.form['content']
-		date_published = datetime.today().strftime('%Y-%m-%d')
-		queries.create_service(title, signup_link, date_published, img_id, content)
-		return redirect('/services')
-	else:
-		return render_template('create_service.html')
-
-@app.route('/edit_service', methods=['GET', 'POST'])
-@login_required
-def edit_service():
-	if request.method == 'POST':
-		file = request.files['file']
-		title = request.form['title']
-		signup_link = request.form['signup_link']
-		content = request.form['content']
-		service_id = request.form['service_id']
-
-		if file and allowed_file(file.filename):
-			filename = secure_filename(file.filename)
-			img_id = queries.get_current_service_img_id(service_id)
-			file.save(os.path.join(app.config['SERVICE_UPLOAD_FOLDER'], str(img_id)))
-
-		date_published = datetime.today().strftime('%Y-%m-%d')
-		link_name = queries.update_service(service_id, title, signup_link, content)
-		return redirect('/services?service='+link_name)
-	else:
-		link_name = request.args.get('service')
-		service = queries.get_service(link_name)
-		return render_template('edit_service.html', service=service)
