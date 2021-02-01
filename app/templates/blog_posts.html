@@ -40,71 +40,16 @@
         <br /><br />
         {% endfor %}
 
-        <div class="row">
-          <div class="col-md-4">
-            <img
-              src="static/img/no_fucker.jpg"
-              style="
-                display: block;
-                margin-left: auto;
-                margin-right: auto;
-                width: 90%;
-              "
-            />
-          </div>
-          <div class="col-md-8">
-            <a href="/no_fucker" class="blog-link">No Fucker Interview</a>
-            <h5>By Ghost</h5>
-            <p>December 18, 2019</p>
-            <p class="blog-blurb">
-              Nevermind the 250 word limit, Here's PURE IMPACT! Recently, I had
-              the chance to chat about band history, heroin addiction, recovery,
-              and what is yet to come from Upstate NY D-beat Master, No Fucker.
-              To start off, could you give us a brief history for those who may
-              be unfamiliar? And what is the current No Fucker line-up?Johnny
-              and I started the band in the fall of 2002. We were in a bland
-              generic crust band that wasn’t meeting our expectations. We needed
-              something more. We had a vision of an American noise dbeat band,
-              something that other people told us was impossible...
-            </p>
-          </div>
-        </div>
+        {% if request.args.get('page') is not none and request.args.get('page') | int > 1 %}
 
-        <br /><br />
+        <a href="/blog?page={{ request.args.get('page') | int - 1 }}" class="btn btn-secondary" style="float: left;">Previous Page</a>
+        <a href="/blog?page={{ request.args.get('page') | int + 1 }}" class="btn btn-secondary" style="float: right;">Next Page</a>
 
-        <div class="row">
-          <div class="col-md-4">
-            <img
-              src="static/img/affordable_boston.png"
-              style="
-                display: block;
-                margin-left: auto;
-                margin-right: auto;
-                width: 100%;
-              "
-            />
-          </div>
-          <div class="col-md-8">
-            <a href="/dn4s" class="blog-link"
-              >The Fight for Affordable Housing in Dorchester</a
-            >
-            <h5>By Claire Foley</h5>
-            <p>December 1, 2019</p>
-            <p class="blog-blurb">
-              On Thursday, the 17th of October, the local Dorchester
-              organization DOT Not For Sale (DN4S) met in the cafeteria of the
-              Vietnamese American Community Center for their monthly community
-              dinner. At the beginning of the gathering, folks were asked to
-              raise their hands in response to a series of questions. “How many
-              people here are renters? Homeowners? How many are landlords?” Most
-              people attending were renters, but there were several homeowners,
-              and a lone landlord. “Who spends more than 30% of their monthly
-              income on rent? More than 50%? Who is fighting for their home?”
-              Hands were in the air for all three questions...
-            </p>
-          </div>
-        </div>
-        <br />
+        {% else %}
+
+        <a href="/blog?page=2" class="btn btn-secondary" style="float: right;">Next Page</a>
+
+        {% endif %}
       </div>
     </div>
   </div>

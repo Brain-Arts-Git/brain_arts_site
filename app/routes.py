@@ -79,11 +79,17 @@ def home():
 @app.route('/blog')
 def blog():
 	link_name = request.args.get('post')
+	# assume page = 1 if undefined
+	try:
+		page = int(request.args.get('page'))
+	except TypeError as e:
+		page = 1
+	
 	if link_name != None:
 		post = queries.get_post(link_name)
 		return render_template('post.html', post=post)
 	else:
-		posts = queries.get_blog_posts()
+		posts = queries.get_blog_posts(page)
 		return render_template('blog_posts.html', posts=posts)
 
 @app.route('/create_post', methods=['GET', 'POST'])

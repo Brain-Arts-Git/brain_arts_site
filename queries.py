@@ -23,7 +23,7 @@ def db_login():
 	return connection
 
 
-def get_blog_posts():
+def get_blog_posts(page):
 	connection = db_login()
 
 	with connection.cursor() as cursor:
@@ -45,7 +45,14 @@ def get_blog_posts():
 		# only show first 500 characters of each post
 		post['content'] = markdown2.markdown(post['content'][0:500].replace('#', '')+'...')
 
-	return posts
+	# return 10 posts per page
+	if page < 2:
+		return posts[0:10]
+	else:
+		first_post = (page * 10) - 10
+		last_post = first_post + 10
+
+	return posts[first_post:last_post]
 
 
 def get_post(link_name):
